@@ -610,6 +610,7 @@ self.classname + " to = new " + self.classname + "();\n" +
     @staticmethod
     def from_db(slug, preview = False, author = None):
         mydef = None
+
         if not preview:
             for action, definition, sharing, id in config.get_rows(
                 "select action, definition, sharing, id from ws_sheets " +

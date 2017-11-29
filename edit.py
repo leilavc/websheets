@@ -129,21 +129,22 @@ if __name__ == "__main__":
       internal_error("Does not have valid format: " + problem)
 
   def notify(problemname):
-    for email_address in config.config_jo['notify_new']:
-      import smtplib
-      from email.mime.text import MIMEText
-      folder = "/".join(problemname.split("/")[:-1])
-      slug = problemname.split("/")[-1]
-      msg = MIMEText("A new websheet " + problemname + " has been created by " + authinfo['username'] + " at " + config.config_jo["baseurl"] + "/?folder="+folder+"&start="+slug)
-      msg['Subject'] = 'New Websheet ' + problemname
-      msg['From'] = "nobody@ints.io"
-      msg['To'] = email_address
-      try:
-        s = smtplib.SMTP('localhost')
-        s.send_message(msg)
-        s.quit()
-      except Exception as e:
-        done(success=False, message="Mail error: "+type(e).__name__+": "+str(e)+"\n[You can set notify_new to an empty list to forcibly silence this error]")
+    pass
+    # for email_address in config.config_jo['notify_new']:
+    #   import smtplib
+    #   from email.mime.text import MIMEText
+    #   folder = "/".join(problemname.split("/")[:-1])
+    #   slug = problemname.split("/")[-1]
+    #   msg = MIMEText("A new websheet " + problemname + " has been created by " + authinfo['username'] + " at " + config.config_jo["baseurl"] + "/?folder="+folder+"&start="+slug)
+    #   msg['Subject'] = 'New Websheet ' + problemname
+    #   msg['From'] = "nobody@ints.io"
+    #   msg['To'] = email_address
+    #   try:
+    #     s = smtplib.SMTP('localhost')
+    #     s.send_message(msg)
+    #     s.quit()
+    #   except Exception as e:
+    #     done(success=False, message="Mail error: "+type(e).__name__+": "+str(e)+"\n[You can set notify_new to an empty list to forcibly silence this error]")
 
   if (action in ['preview', 'save', 'delete']):
     if not canedit(problem):
