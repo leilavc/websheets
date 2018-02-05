@@ -10,18 +10,18 @@ if (1 != preg_match('~^(([\\w-]+/)*[\\w-]+)?$~', $_GET['folder']))
 <head>
    <title>Websheets</title>
    <link rel="icon" type="image/png" href="favicon.png">
-   <script type="text/javascript" src="jquery.min.js"></script>
-   <script type="text/javascript" src="CodeMirror/lib/codemirror.js"></script>
-   <script type="text/javascript" src="CodeMirror/mode/clike/clike.js"></script>
+   <script type="text/javascript" src="/static/jquery.min.js"></script>
+   <script type="text/javascript" src="/static/CodeMirror/lib/codemirror.js"></script>
+   <script type="text/javascript" src="/static/CodeMirror/mode/clike/clike.js"></script>
    <script type="text/javascript"
-    src="CodeMirror/addon/selection/mark-selection.js"></script>
+    src="/static/CodeMirror/addon/selection/mark-selection.js"></script>
    <script type="text/javascript" 
-    src="CodeMirror/addon/edit/matchbrackets.js"></script>
+    src="/static/CodeMirror/addon/edit/matchbrackets.js"></script>
    <script type="text/javascript">
    "use strict";
    </script>
-   <script type="text/javascript" src="websheets.js"></script>
-   <script type="text/javascript" src="index.js"></script>
+   <script type="text/javascript" src="/static/websheets.js"></script>
+   <script type="text/javascript" src="/static/index.js"></script>
    <script type="text/x-mathjax-config"> 
       MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} });
    </script>
@@ -29,10 +29,10 @@ if (1 != preg_match('~^(([\\w-]+/)*[\\w-]+)?$~', $_GET['folder']))
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
    </script>
 
-   <link rel="stylesheet" href="CodeMirror/lib/codemirror.css">
-   <link rel="stylesheet" href="CodeMirror/theme/neat.css">
-   <link rel="stylesheet" href="websheets.css">
-   <link rel="stylesheet" href="index.css">
+   <link rel="stylesheet" href="/static/CodeMirror/lib/codemirror.css">
+   <link rel="stylesheet" href="/static/CodeMirror/theme/neat.css">
+   <link rel="stylesheet" href="/static/websheets.css">
+   <link rel="stylesheet" href="/static/index.css">
   
    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700'
     rel='stylesheet' type='text/css'>

@@ -220,10 +220,10 @@ and sign out.";
    } // end foreach
   
    // some schools will want to use their own authentication. example:
-   if (substr($_SERVER['SERVER_NAME'], -13)=='princeton.edu') {
+   if (true) {
     $WS_AUTHINFO['providers'][] = "Princeton";
     
-    include_once('../CAS-1.3.2/CAS.php');
+    include_once('CAS-1.3.2/CAS.php');
     phpCAS::setDebug();
     phpCAS::client(CAS_VERSION_2_0,'fed.princeton.edu',443,'cas');
     phpCAS::setNoCasServerValidation();
@@ -241,7 +241,7 @@ and sign out.";
       $WS_AUTHINFO['domain'] = 'Princeton'; 
       $WS_AUTHINFO['logged_in'] = true;
     }     
-   }
+    }
 
    // if backdoor is enabled, check for it
    if (array_key_exists("backdoor-auths", $WS_CONFIG)) {
@@ -256,12 +256,12 @@ and sign out.";
 
 // pass the list of authentication services to the next php file
    if ($WS_AUTHINFO["providers"] == array()) {
-      $WS_AUTHINFO['logged_in'] = true;
-      $WS_AUTHINFO['username'] = "leila";
-      $WS_AUTHINFO['domain'] = "localhost";
-      $WS_AUTHINFO['is_super'] = true;
+      // $WS_AUTHINFO['logged_in'] = true;
+      // $WS_AUTHINFO['username'] = "leila";
+      // $WS_AUTHINFO['domain'] = "localhost";
+      // $WS_AUTHINFO['is_super'] = true;
 	    
-      // $error = "No authentication providers are configured.";
+      $error = "No authentication providers are configured.";
    }
 }
 
@@ -278,8 +278,8 @@ if (!$WS_AUTHINFO["logged_in"]) {
 
 $_SESSION['WS_AUTHINFO'] = $WS_AUTHINFO;
 
-$WS_AUTHINFO['is_super'] = array_key_exists("super_users", $WS_CONFIG) && 
-			   in_array($WS_AUTHINFO["username"], $WS_CONFIG["super_users"]);
+$WS_AUTHINFO['is_super'] = true;
+// array_key_exists("super_users", $WS_CONFIG) &&  in_array($WS_AUTHINFO["username"], $WS_CONFIG["super_users"]);
 
 // check if an ajax request was not authenticatable by the expected user
 if ($error == "" && array_key_exists("ajax_uid_intended", $_REQUEST)) {
@@ -326,8 +326,8 @@ else if ($WS_AUTHINFO['logged_in'])
       . ". <a href='$gets"."auth=logout'>Log out.</a></span>";
 else {
    $msg = "<span class='ws_info_span'>Not logged in. Log in with";
-   // foreach ($WS_AUTHINFO["providers"] as $i => $p)
-   //  $msg .= ($i==0?"":" or")." <a href='$gets"."auth=$p'>$p</a>";
+    foreach ($WS_AUTHINFO["providers"] as $i => $p)
+     $msg .= ($i==0?"":" or")." <a href='$gets"."auth=$p'>$p</a>";
    $WS_AUTHINFO["info_span"] = $msg . '.</span>';
 }
 

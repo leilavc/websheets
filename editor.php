@@ -14,22 +14,22 @@ if (!preg_match("@^[0-9a-zA-Z_/-]*$@", $_REQUEST['edit'])) {
 <script type="text/javascript" 
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-<script type='text/javascript' src='jquery.min.js'></script>
-<script type='text/javascript' src='editor.js'></script>
-<script type='text/javascript' src='websheets.js'></script>
-<script type="text/javascript" src="CodeMirror/lib/codemirror.js"></script>
-<script type="text/javascript" src="CodeMirror/mode/clike/clike.js"></script>
-<script type="text/javascript" src="CodeMirror/mode/javascript/javascript.js"></script>
-<script type="text/javascript" src="CodeMirror/mode/xml/xml.js"></script>
-<script type="text/javascript" src="CodeMirror/mode/css/css.js"></script>
-<script type="text/javascript" src="CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
+<script type='text/javascript' src='/static/jquery.min.js'></script>
+<script type='text/javascript' src='/static/editor.js'></script>
+<script type='text/javascript' src='/static/websheets.js'></script>
+<script type="text/javascript" src="/static/CodeMirror/lib/codemirror.js"></script>
+<script type="text/javascript" src="/static/CodeMirror/mode/clike/clike.js"></script>
+<script type="text/javascript" src="/static/CodeMirror/mode/javascript/javascript.js"></script>
+<script type="text/javascript" src="/static/CodeMirror/mode/xml/xml.js"></script>
+<script type="text/javascript" src="/static/CodeMirror/mode/css/css.js"></script>
+<script type="text/javascript" src="/static/CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
 <script type="text/javascript"
-   src="CodeMirror/addon/selection/mark-selection.js"></script>
+   src="/static/CodeMirror/addon/selection/mark-selection.js"></script>
 <script type="text/javascript"
-   src="CodeMirror/addon/edit/matchbrackets.js"></script>
-<link rel="stylesheet" href="CodeMirror/lib/codemirror.css">
-<link rel="stylesheet" href="CodeMirror/theme/neat.css">
-<link rel="stylesheet" href="websheets.css">
+   src="/static/CodeMirror/addon/edit/matchbrackets.js"></script>
+<link rel="stylesheet" href="/static/CodeMirror/lib/codemirror.css">
+<link rel="stylesheet" href="/static/CodeMirror/theme/neat.css">
+<link rel="stylesheet" href="/static/websheets.css">
 <style>
    .howto {font-size: 75%;}
    .CodeMirror {height: auto; border:1px solid black;}
