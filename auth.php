@@ -220,27 +220,28 @@ and sign out.";
    } // end foreach
   
    // some schools will want to use their own authentication. example:
-   if (true) {
+   if (false) {
     $WS_AUTHINFO['providers'][] = "Princeton";
     
     include_once('CAS-1.3.2/CAS.php');
     phpCAS::setDebug();
-    phpCAS::client(CAS_VERSION_2_0,'fed.princeton.edu',443,'cas');
+    phpCAS::client(CAS_VERSION_2_0,'cast.cs.princeton.edu',443,'cas');
     phpCAS::setNoCasServerValidation();
     
     if ($_REQUEST['auth']=='Princeton') {
-      phpCAS::forceAuthentication();
+      phpCAS::getUser();
     }
     
     if (phpCAS::isAuthenticated() && !$WS_AUTHINFO['logged_in']) {
       if ($_REQUEST['auth']=='logout') {
         phpCAS::logout();
       }
-      
-      $WS_AUTHINFO['username'] = phpCAS::getUser() . '@princeton.edu';
+
+
+      $WS_AUTHINFO['username'] = phpCAS::getUser();
       $WS_AUTHINFO['domain'] = 'Princeton'; 
       $WS_AUTHINFO['logged_in'] = true;
-    }     
+      }     
     }
 
    // if backdoor is enabled, check for it
@@ -249,19 +250,32 @@ and sign out.";
             $WS_AUTHINFO['logged_in'] = true;
             $WS_AUTHINFO['username'] = $WS_CONFIG["backdoor-auths"][$_REQUEST['auth']];
             $WS_AUTHINFO['domain'] = $_REQUEST['auth'];
-            $WS_AUTHINFO['is_super'] = true;
+            // $WS_AUTHINFO['is_super'] = true;
       }
    }
   } // if not cookied
 
 // pass the list of authentication services to the next php file
+function get_data($url) {
+	$ch = curl_init();
+	$timeout = 5;
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+	$data = curl_exec($ch);
+	curl_close($ch);
+	return $data;
+}
+
+// I had to modify this part to get it to read from the FLASK session cookie :(
    if ($WS_AUTHINFO["providers"] == array()) {
-      // $WS_AUTHINFO['logged_in'] = true;
-      // $WS_AUTHINFO['username'] = "leila";
-      // $WS_AUTHINFO['domain'] = "localhost";
-      // $WS_AUTHINFO['is_super'] = true;
+       $WS_AUTHINFO['logged_in'] = true;
+       $WS_AUTHINFO['domain'] = "Princeton";
+       exec("python3 ./auth.py " . $_COOKIE['session'], $output, $return_var);
+       $WS_AUTHINFO['username'] = $output[0];
+       $WS_AUTHINFO['is_super'] = false;
 	    
-      $error = "No authentication providers are configured.";
+      //$error = "No authentication providers are configured.";
    }
 }
 
