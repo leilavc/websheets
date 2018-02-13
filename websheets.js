@@ -76,17 +76,17 @@ websheets.set_authinfo = function(info) {
   websheets.authinfo = info;
   if (info.error_span)
     $(".embed-authinfo").html(info.error_span);
-  else {
-    if (info.logged_in)
-      $(".embed-authinfo").html("Logged in as " + info.username + ". <a href='javascript:websheets.popup_reauth(\"logout\")'>Log out</a>");
-    else {
-      var msg = "Not logged in, your work will not be saved. Log in with ";
-      for (var i=0; i<info.providers.length; i++) {
-        if (i != 0) msg += ' or ';
-        msg += "<a href='javascript:websheets.popup_reauth(\""+info.providers[i]+"\")'>"+info.providers[i]+"</a>";
-      }
-      $(".embed-authinfo").html(msg +".");
-    }
+  // else {
+  //   if (info.logged_in)
+  //     $(".embed-authinfo").html("Logged in as " + info.username + ". <a href='javascript:websheets.popup_reauth(\"logout\")'>Log out</a>");
+  //   else {
+  //     var msg = "Not logged in, your work will not be saved. Log in with ";
+  //     for (var i=0; i<info.providers.length; i++) {
+  //       if (i != 0) msg += ' or ';
+  //       msg += "<a href='javascript:websheets.popup_reauth(\""+info.providers[i]+"\")'>"+info.providers[i]+"</a>";
+  //     }
+  //     $(".embed-authinfo").html(msg +".");
+  //   }
   }
   if (reload_sheets)
     for (var i=0; i<websheets.all.length; i++)
